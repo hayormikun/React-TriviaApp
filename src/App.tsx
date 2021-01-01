@@ -81,7 +81,7 @@ function App() {
         </button>
       ) : null}
 
-      {!finishedQuiz && !loading ? <p className="">Score: {}</p> : null}
+      {!finishedQuiz && !loading ? <p className="">Score: {score}</p> : null}
       {loading && <p className="spinner">Loading questions...</p>}
 
       {!loading && !finishedQuiz && (
