@@ -1,10 +1,11 @@
 import React from 'react'
+import { iAnswers } from '../App'
 
 interface iQuestions {
   question: string
   answers: string[]
-  callback: any
-  userAnswer: any
+  callback: (e: React.MouseEvent<HTMLButtonElement>)=>void
+  userAnswer: iAnswers | undefined
   questionNo: number
   totalQuestions: number
 }
@@ -26,8 +27,8 @@ const QuestionCard: React.FC<iQuestions> = ({
 
       <div>
         {answers.map(answer => (
-          <div key={questionNo}>
-            <button disabled={userAnswer} onClick={callback}>
+          <div key={answer}>
+            <button disabled={userAnswer ? true :  false} value={answer} onClick={callback}>
               <span dangerouslySetInnerHTML={{ __html: answer }}/>
             </button>
           </div>

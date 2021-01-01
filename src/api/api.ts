@@ -23,20 +23,21 @@ export enum Difficulty {
 
 export const fetchQuestions = async( amount: number, difficulty: Difficulty) => {
     //add to dotenv file
+    
     const API = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`
     
     //fetch with axios
-    try {
+    // try {
         const data = await (await fetch(API)).json()
-        console.log(data)
+
         return data.results.map((question: iQuestion)=>(
             {
                 ...question,
                 answers: shuffleArray([...question.incorrect_answers, question.correct_answer])
             }
         ))
-    } catch (err) {
-        throw new Error("Can't fetch trivia at this time, try again")
-    }
+    // } catch (err) {
+    //     console.log(err)
+    // }
    
 }
