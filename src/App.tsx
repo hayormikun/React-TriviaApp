@@ -27,14 +27,14 @@ function App() {
       <p className="">Score: {}</p>
 
       <p className="spinner">Loading questions...</p>
-      <QuestionCard
+      {/* <QuestionCard
         questionNo={questionNumber + 1}
         totalQuestions={TOTAL_QUESTIONS}
         question={questions[questionNumber].question}
         answers={questions[questionNumber].answer}
         userAnswer={userAnswers ? userAnswers[questionNumber] : undefined}
         callback={checkAnswer}
-      />
+      /> */}
 
       <button className="next" onClick={nextQuestion}>
         Next
