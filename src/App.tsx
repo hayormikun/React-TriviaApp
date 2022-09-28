@@ -44,7 +44,7 @@ function App() {
   const nextQuestion = () => {}
 
   return (
-    <div className="App">
+    <div className="bg-gray-700">
       <h1>React Quiz</h1>
       { finishedQuiz || userAnswers.length === TOTAL_QUESTIONS }
       <button className="start" onClick={startTrivia}>
