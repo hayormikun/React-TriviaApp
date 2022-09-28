@@ -1,15 +1,42 @@
+import { shuffleArray } from "../utils"
 
-export interface iDifficulty {
-    EASY: 'easy'
-    MEDIUM: 'medium'
-    HARD: 'hard'
+export interface iQuestion {
+    category: string
+    correct_answer: string
+    difficulty: string
+    incorrect_answers: string[]
+    question: string
+    type: string
 }
 
-export const fetchQuestions = async( amount: number, difficulty: iDifficulty) => {
+
+export interface iQuestionState extends iQuestion {
+   answers: string[] 
+}
+
+
+export enum Difficulty {
+    EASY = 'easy',
+    MEDIUM = 'medium',
+    HARD = 'hard',
+}
+
+export const fetchQuestions = async( amount: number, difficulty: Difficulty) => {
     //add to dotenv file
     const API = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`
     
     //fetch with axios
-    const data = await (await fetch(API)).json()
-    console.log(data)
+    try {
+        const data = await (await fetch(API)).json()
+        console.log(data)
+        return data.results.map((question: iQuestion)=>(
+            {
+                ...question,
+                answers: shuffleArray([...question.incorrect_answers, question.correct_answer])
+            }
+        ))
+    } catch (err) {
+        throw new Error("Can't fetch trivia at this time, try again")
+    }
+   
 }

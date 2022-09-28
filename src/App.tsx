@@ -1,18 +1,43 @@
 import React, { useState } from 'react'
 import './App.css'
 import QuestionCard from './components/QuestionCard'
+import { fetchQuestions } from './api/api'
+import { iQuestionState, Difficulty } from './api/api'
+
+export interface iAnswers {
+  question: string
+  answer: string
+  correct: boolean
+  correctAnswer: string
+}
 
 const TOTAL_QUESTIONS = 10
 
 function App() {
   const [loading, setLoading] = useState(false)
-  const [questions, setQuestions] = useState([])
+  const [questions, setQuestions] = useState<iQuestionState[]>([])
   const [questionNumber, setQuestionNumber] = useState(0)
-  const [userAnswers, setuserAnswers] = useState([])
+  const [userAnswers, setuserAnswers] = useState<iAnswers[]>([])
   const [score, setScore] = useState(0)
   const [finishedQuiz, setFinishedQuiz] = useState(true)
 
-  const startQuiz = async () => {}
+  console.log(fetchQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
+  const startTrivia = async () => {
+    setLoading(true)
+    setFinishedQuiz(false)
+
+    try {
+      const newQuestions  = await fetchQuestions(TOTAL_QUESTIONS, Difficulty.EASY)
+      setQuestions(newQuestions)
+    } catch (err) {
+      alert(`${err}`)     
+    } 
+
+    setScore(0)
+    setuserAnswers([])
+    setQuestionNumber(0)
+    setLoading(false)
+  }
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {}
 
@@ -21,7 +46,8 @@ function App() {
   return (
     <div className="App">
       <h1>React Quiz</h1>
-      <button className="start" onClick={startQuiz}>
+      { finishedQuiz || userAnswers.length === TOTAL_QUESTIONS }
+      <button className="start" onClick={startTrivia}>
         Take Quiz
       </button>
       <p className="">Score: {}</p>
