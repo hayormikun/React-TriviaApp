@@ -26,8 +26,7 @@ export const fetchQuestions = async( amount: number, difficulty: Difficulty) => 
     
     const API = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`
     
-    //fetch with axios
-    // try {
+    try {
         const data = await (await fetch(API)).json()
 
         return data.results.map((question: iQuestion)=>(
@@ -36,8 +35,8 @@ export const fetchQuestions = async( amount: number, difficulty: Difficulty) => 
                 answers: shuffleArray([...question.incorrect_answers, question.correct_answer])
             }
         ))
-    // } catch (err) {
-    //     console.log(err)
-    // }
+    } catch (err) {
+        console.log(err)
+    }
    
 }

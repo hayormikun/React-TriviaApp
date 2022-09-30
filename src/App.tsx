@@ -26,17 +26,16 @@ function App() {
     setLoading(true)
     setFinishedQuiz(false)
 
-    // try {
+    try {
       const newQuestions = await fetchQuestions(
         TOTAL_QUESTIONS,
         Difficulty.EASY,
       )
-
       
       setQuestions(newQuestions)
-    // } catch (err) {
-    //   alert(`${err}`)
-    // }
+    } catch (err) {
+      alert(`${err}`)
+    }
 
     setScore(0)
     setUserAnswers([])
