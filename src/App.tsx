@@ -21,7 +21,7 @@ function App() {
   const [score, setScore] = useState(0)
   const [finishedQuiz, setFinishedQuiz] = useState(true)
 
-  console.log(fetchQuestions(TOTAL_QUESTIONS, Difficulty.EASY))
+
   const startTrivia = async () => {
     setLoading(true)
     setFinishedQuiz(false)
@@ -42,8 +42,6 @@ function App() {
     setQuestionNumber(0)
     setLoading(false)
   }
-
-  console.log(questions)
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!finishedQuiz) {

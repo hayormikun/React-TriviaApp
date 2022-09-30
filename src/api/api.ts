@@ -35,8 +35,8 @@ export const fetchQuestions = async( amount: number, difficulty: Difficulty) => 
                 answers: shuffleArray([...question.incorrect_answers, question.correct_answer])
             }
         ))
-    } catch (err) {
-        console.log(err)
+    } catch (err: any) {
+        throw new err('Failed to fetch Questions')
     }
    
 }
