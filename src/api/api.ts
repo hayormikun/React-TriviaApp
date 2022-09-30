@@ -35,8 +35,8 @@ export const fetchQuestions = async( amount: number, difficulty: Difficulty) => 
                 answers: shuffleArray([...question.incorrect_answers, question.correct_answer])
             }
         ))
-    } catch (err: any) {
-        throw new err('Failed to fetch Questions')
+    } catch (err) {
+        throw new Error(`failed to fetch trivia questions`)
     }
    
 }

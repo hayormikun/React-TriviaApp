@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import './App.css'
 import QuestionCard from './components/QuestionCard'
+
 import { fetchQuestions } from './api/api'
 import { iQuestionState, Difficulty } from './api/api'
+
+import { GlobalStyle, Wrapper } from './App.styles'
 
 export interface iAnswers {
   question: string
@@ -21,7 +24,6 @@ function App() {
   const [score, setScore] = useState(0)
   const [finishedQuiz, setFinishedQuiz] = useState(true)
 
-
   const startTrivia = async () => {
     setLoading(true)
     setFinishedQuiz(false)
@@ -31,7 +33,7 @@ function App() {
         TOTAL_QUESTIONS,
         Difficulty.EASY,
       )
-      
+
       setQuestions(newQuestions)
     } catch (err) {
       alert(`${err}`)
@@ -70,37 +72,41 @@ function App() {
   }
 
   return (
-    <div className="bg-gray-700">
-      <h1>React Quiz</h1>
-      {finishedQuiz || userAnswers.length === TOTAL_QUESTIONS ? (
-        <button className="start" onClick={startTrivia}>
-          Start New Trivia
-        </button>
-      ) : null}
+    <>
+      <GlobalStyle />
 
-      {!finishedQuiz && !loading ? <p className="">Score: {score}</p> : null}
-      {loading && <p className="spinner">Loading questions...</p>}
-
-      {!loading && !finishedQuiz && (
-        <QuestionCard
-          questionNo={questionNumber + 1}
-          totalQuestions={TOTAL_QUESTIONS}
-          question={questions[questionNumber].question}
-          answers={questions[questionNumber].answers}
-          userAnswer={userAnswers ? userAnswers[questionNumber] : undefined}
-          callback={checkAnswer}
-        />
-      )}
-
-      {!finishedQuiz &&
-        !loading &&
-        userAnswers.length === questionNumber + 1 &&
-        questionNumber !== TOTAL_QUESTIONS - 1 && (
-          <button className="" onClick={nextQuestion}>
-            Next
+      <Wrapper>
+        <h1>React Quiz</h1>
+        {finishedQuiz || userAnswers.length === TOTAL_QUESTIONS ? (
+          <button className="start" onClick={startTrivia}>
+            Start New Trivia
           </button>
+        ) : null}
+
+        {!finishedQuiz && !loading ? <p className="">Score: {score}</p> : null}
+        {loading && <p className="spinner">Loading questions...</p>}
+
+        {!loading && !finishedQuiz && (
+          <QuestionCard
+            questionNo={questionNumber + 1}
+            totalQuestions={TOTAL_QUESTIONS}
+            question={questions[questionNumber].question}
+            answers={questions[questionNumber].answers}
+            userAnswer={userAnswers ? userAnswers[questionNumber] : undefined}
+            callback={checkAnswer}
+          />
         )}
-    </div>
+
+        {!finishedQuiz &&
+          !loading &&
+          userAnswers.length === questionNumber + 1 &&
+          questionNumber !== TOTAL_QUESTIONS - 1 && (
+            <button className="" onClick={nextQuestion}>
+              Next
+            </button>
+          )}
+      </Wrapper>
+    </>
   )
 }
 
