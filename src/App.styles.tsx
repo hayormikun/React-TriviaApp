@@ -1,13 +1,12 @@
 import styled, { createGlobalStyle } from "styled-components";
-
 //@ts-ignore
-import bg from './images/lucian_serbanescu.jpg'
+import bg from './images/bg.jpg'
 
 export const GlobalStyle = createGlobalStyle `
     html {
         height: 100%;
     }
-
+   
     body {
         background-img: url($(bg));
         background-size: cover;
