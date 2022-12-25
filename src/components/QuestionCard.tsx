@@ -1,6 +1,7 @@
 import { Box, Button, Text } from '@chakra-ui/react'
 import React from 'react'
 import { iAnswers } from '../App'
+import { ButtonWrapper } from '../Answers.styles'
 
 interface iQuestions {
   question: string
@@ -20,29 +21,41 @@ const QuestionCard: React.FC<iQuestions> = ({
   questionNo,
 }: iQuestions) => {
   return (
-    <Box w={'fit-content'} p={"10"} h={'auto'} bgColor={'slategray'} rounded={'md'}>
-      <Text color={'white'} fontSize={'18px'} fontWeight={'semibold'}>
+    <Box
+      w={'fit-content'}
+      p={'10'}
+      h={'auto'}
+      bgColor={'white'}
+      boxShadow={'md'}
+      rounded={'md'}
+    >
+      <Text color={'gray.700'} fontSize={'18px'} fontWeight={'semibold'}>
         Question: {questionNo} / {totalQuestions}
       </Text>
-      <Text my={"2"} color={'white'} fontSize={'18px'} fontWeight={'semibold'} dangerouslySetInnerHTML={{ __html: question }} />
+      <Text
+        my={'2'}
+        color={'gray.700'}
+        fontSize={'18px'}
+        fontWeight={'semibold'}
+        userSelect={"none"}
+        dangerouslySetInnerHTML={{ __html: question }}
+      />
 
       <Box>
         {answers.map((answer) => (
-          <Box key={answer}>
-            <Button
-              variant={'solid'}
+          <ButtonWrapper
+            key={answer}
+            correct={userAnswer?.correctAnswer === answer}
+            clickedAnswer={userAnswer?.answer === answer}
+          >
+            <button
               disabled={userAnswer ? true : false}
               value={answer}
-              bgColor={"blue.500"}
-              color={"white"}
-              textAlign={"center"}
-              w={"full"}
-              my={"2"}
               onClick={callback}
             >
               <span dangerouslySetInnerHTML={{ __html: answer }} />
-            </Button>
-          </Box>
+            </button>
+          </ButtonWrapper>
         ))}
       </Box>
     </Box>

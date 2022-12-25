@@ -7,10 +7,12 @@ import { iQuestionState, Difficulty } from './api/api'
 import {
   Button,
   Center,
-  Container,
   Heading,
+  HStack,
   Text,
   VStack,
+  Icon,
+  Box,
 } from '@chakra-ui/react'
 
 export interface iAnswers {
@@ -79,33 +81,83 @@ function App() {
 
   return (
     <div className="wrap">
-      <Center>
-        <VStack my={'2%'} gap={"5"}>
-          <Heading as={'h1'} fontSize={'5.5em'} fontWeight={'500'}>
-            Trivia Quest
+      <Center mx={"2"}>
+        <VStack my={'2%'} gap={'5'}>
+          <Heading as={'h1'} fontSize={'5.5em'} fontWeight={'700'}>
+            Random Trivia
           </Heading>
           {finishedQuiz || userAnswers.length === TOTAL_QUESTIONS ? (
             <Button
               variant={'solid'}
               textAlign={'center'}
-              bgColor={'blue.500'}
+              bgColor={'blue.800'}
               color={'white'}
               size={'lg'}
               fontSize={'xl'}
               fontWeight={'bold'}
-              boxShadow={'dark-lg'}
+              boxShadow={'dark-md'}
+              _hover={{
+                bgColor: 'blue.800',
+                opacity: '0.8',
+                boxShadow: 'dark-lg',
+              }}
+              _active={{
+                bgColor: 'blue.800',
+                opacity: '0.8',
+                boxShadow: 'dark-lg',
+              }}
               onClick={startTrivia}
             >
-              Start Trivia
+              New Trivia
             </Button>
           ) : null}
 
-          {!finishedQuiz && !loading ? (
-            <Text color={'white'} fontSize={'24px'} fontWeight={'semibold'}>
-              Score: {score}
+          {loading && (
+            <Text fontSize={'lg'} fontWeight={'500'} my={'40%'}>
+              Loading questions...
             </Text>
+          )}
+
+          {!finishedQuiz && !loading ? (
+            <HStack gap={1} alignItems={"center"}>
+              {score < 5 && (
+                <Icon
+                  viewBox="0 0 200 200"
+                  color="red.500"
+                  height="7"
+                  width="7"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
+                  />
+                </Icon>
+              )}
+
+              {score >= 5 && (
+                <Icon
+                  viewBox="0 0 200 200"
+                  color="green.500"
+                  height="7"
+                  width="7"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0"
+                  />
+                </Icon>
+              )}
+
+              <Text
+                color={'white'}
+                fontSize={'1.3em'}
+                textShadow={'lg'}
+                fontWeight={'semibold'}
+              >
+                Score: {score}
+              </Text>
+            </HStack>
           ) : null}
-          {loading && <Text my={"40%"}>Loading questions...</Text>}
 
           {!loading && !finishedQuiz && (
             <QuestionCard
@@ -122,8 +174,28 @@ function App() {
             !loading &&
             userAnswers.length === questionNumber + 1 &&
             questionNumber !== TOTAL_QUESTIONS - 1 && (
-              <Button className="" onClick={nextQuestion}>
-                Next
+              <Button
+                variant={'solid'}
+                textAlign={'center'}
+                bgColor={'blue.800'}
+                color={'white'}
+                size={'lg'}
+                fontSize={'xl'}
+                fontWeight={'bold'}
+                boxShadow={'dark-md'}
+                _hover={{
+                  bgColor: 'blue.800',
+                  opacity: '0.8',
+                  boxShadow: 'dark-lg',
+                }}
+                _active={{
+                  bgColor: 'blue.800',
+                  opacity: '0.8',
+                  boxShadow: 'dark-lg',
+                }}
+                onClick={nextQuestion}
+              >
+                Next Question
               </Button>
             )}
         </VStack>
