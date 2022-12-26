@@ -82,7 +82,7 @@ function App() {
     <div className="wrap">
       <Center mx={'2'}>
         <VStack my={'2%'} gap={'5'}>
-          <Box fontSize={'5.5em'}>
+          <Box fontSize={'5em'}>
             <h1>Random Trivia</h1>
           </Box>
 
