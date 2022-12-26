@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap');
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Catamaran';
+    font-family: 'Nunito', 'sans-serif';
 }
 
 body {
@@ -22,17 +24,20 @@ body {
 }
 
 h1 {
-    font-family: Fascinate Inline, Haettenschweiler, 'Arial Narrow Bold', san-serif;
-        background-image: linear-gradient(180deg, #ffffff, #87f1ff);
-        background-size: 100%;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -moz-background-clip: text;
-        -moz-text-fill-color: transparent;
-        -o-background-clip: text;
-        -o-text-fill-color: transparent;
-        filter: drop-shadow(2px 2px #0085a3);
+    font-family: 'Fascinate Inline', 'Arial Narrow Bold', 'cursive', 'san-serif';
+    font-weight: 400;
+    font-size: ;
+    text-align: center;
+    background-image: linear-gradient(180deg, #ffffff, #87f1ff);
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    -o-background-clip: text;
+    -o-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px #0085a3);
 }
 
 p {
@@ -42,5 +47,5 @@ p {
 .score {
     color: #ffffff;
     font-size: 2rem;
-    margin: 0; 
+    margin: 0;
 }

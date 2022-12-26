@@ -7,7 +7,6 @@ import { iQuestionState, Difficulty } from './api/api'
 import {
   Button,
   Center,
-  Heading,
   HStack,
   Text,
   VStack,
@@ -81,11 +80,12 @@ function App() {
 
   return (
     <div className="wrap">
-      <Center mx={"2"}>
+      <Center mx={'2'}>
         <VStack my={'2%'} gap={'5'}>
-          <Heading as={'h1'} fontSize={'5.5em'} fontWeight={'700'}>
-            Random Trivia
-          </Heading>
+          <Box fontSize={'5.5em'}>
+            <h1>Random Trivia</h1>
+          </Box>
+
           {finishedQuiz || userAnswers.length === TOTAL_QUESTIONS ? (
             <Button
               variant={'solid'}
@@ -119,7 +119,7 @@ function App() {
           )}
 
           {!finishedQuiz && !loading ? (
-            <HStack gap={1} alignItems={"center"}>
+            <HStack gap={1} alignItems={'center'}>
               {score < 5 && (
                 <Icon
                   viewBox="0 0 200 200"
