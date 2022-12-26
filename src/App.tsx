@@ -137,7 +137,7 @@ function App() {
               {score >= 5 && (
                 <Icon
                   viewBox="0 0 200 200"
-                  color="green.500"
+                  color="green.300"
                   height="7"
                   width="7"
                 >
